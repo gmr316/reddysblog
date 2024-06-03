@@ -1,0 +1,25 @@
+{
+  "name": "reddy-blog",
+  "version": "1.0.0",
+  "description": "smaple nodeJS application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+ 
+  "homepage": "",
+  "dependencies": {
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.13.22",
+    "morgan": "^1.10.0",
+    "node": "^16.20.2",
+    "nvm": "^0.0.4"
+  }
+}

@@ -1,0 +1,46 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="details content">
+    <h2><%= blog.title %></h2>
+    <h4><%= blog.snippet %></h4>
+      
+      <button id="show-update-form" class="update-btn">Update Snippet</button>
+      <form id="update-snippet-form" action="/blogs/<%= blog._id %>" method="post" style="display: none;">
+        <input type="text" id="snippet" name="snippet" value="<%= blog.snippet %>" required>
+        <button type="submit">Update Snippet</button>
+      </form>
+    <div class="content">
+      <p><%= blog.body %></p>
+    </div>
+    <a class="delete" data-doc="<%= blog._id %>">
+      <img src="/trashcan.svg" alt="delete icon">
+    </a>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+
+  <script>
+    const trashcan = document.querySelector('a.delete');
+
+    trashcan.addEventListener('click', (e) => {
+      const endpoint = `/blogs/${trashcan.dataset.doc}`;
+
+      fetch(endpoint, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => window.location.href = data.redirect)
+      .catch(err => console.log(err));
+    });
+    document.getElementById('show-update-form').addEventListener('click', function() {
+        document.getElementById('update-snippet-form').style.display = 'block';
+        this.style.display = 'none';
+      });
+    
+  </script>
+</body>
+</html>
